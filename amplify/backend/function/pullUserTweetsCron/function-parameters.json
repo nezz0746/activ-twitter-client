@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "api": {
+      "activisttwitterclien": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "Tweet:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
