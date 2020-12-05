@@ -2,64 +2,6 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class Tweet {
-  readonly id?: string;
-  readonly created_at?: string;
-  readonly id_str?: string;
-  readonly text?: string;
-  readonly source?: string;
-  readonly truncated?: boolean;
-  readonly in_reply_to_status_id?: string;
-  readonly in_reply_to_status_id_str?: string;
-  readonly in_reply_to_user_id?: string;
-  readonly in_reply_to_user_id_str?: string;
-  readonly in_reply_to_screen_name?: string;
-  readonly user?: User;
-  readonly coordinates?: Coordinates;
-  readonly place?: Place;
-  readonly quoted_status_id?: string;
-  readonly quoted_status_id_str?: string;
-  readonly is_quote_status?: boolean;
-  readonly quoted_status?: Tweet;
-  readonly retweeted_status?: Tweet;
-  readonly quote_count?: number;
-  readonly reply_count?: number;
-  readonly retweet_count?: number;
-  readonly favorite_count?: number;
-  readonly entities?: Entity;
-  readonly favorited?: boolean;
-  readonly retweeted?: boolean;
-  readonly possibly_sensitive?: boolean;
-  readonly filter_level?: string;
-  readonly lang?: string;
-  constructor(init: ModelInit<Tweet>);
-}
-
-export declare class User {
-  readonly id?: string;
-  readonly id_str?: string;
-  readonly name?: string;
-  readonly screen_name?: string;
-  readonly location?: string;
-  readonly url?: string;
-  readonly description?: string;
-  readonly protected?: boolean;
-  readonly verified?: boolean;
-  readonly followers_count?: number;
-  readonly friends_count?: number;
-  readonly listed_count?: number;
-  readonly favourites_count?: number;
-  readonly statuses_count?: number;
-  readonly created_at?: string;
-  readonly profile_banner_url?: string;
-  readonly profile_image_url_https?: string;
-  readonly default_profile?: boolean;
-  readonly default_profile_image?: boolean;
-  readonly withheld_in_countries?: (string | null)[];
-  readonly withheld_scope?: string;
-  constructor(init: ModelInit<User>);
-}
-
 export declare class Coordinates {
   readonly coordinates?: (number | null)[];
   readonly type?: string;
@@ -152,3 +94,62 @@ export declare class Option {
   constructor(init: ModelInit<Option>);
 }
 
+export declare class Tweet {
+  readonly id: string;
+  readonly created_at?: string;
+  readonly id_str?: string;
+  readonly text?: string;
+  readonly source?: string;
+  readonly truncated?: boolean;
+  readonly in_reply_to_status_id?: string;
+  readonly in_reply_to_status_id_str?: string;
+  readonly in_reply_to_user_id?: string;
+  readonly in_reply_to_user_id_str?: string;
+  readonly in_reply_to_screen_name?: string;
+  readonly userID: string;
+  readonly user?: User;
+  readonly coordinates?: Coordinates;
+  readonly place?: Place;
+  readonly quoted_status_id?: string;
+  readonly quoted_status_id_str?: string;
+  readonly is_quote_status?: boolean;
+  readonly quote_count?: number;
+  readonly reply_count?: number;
+  readonly retweet_count?: number;
+  readonly favorite_count?: number;
+  readonly entities?: Entity;
+  readonly favorited?: boolean;
+  readonly retweeted?: boolean;
+  readonly possibly_sensitive?: boolean;
+  readonly filter_level?: string;
+  readonly lang?: string;
+  readonly last?: boolean;
+  constructor(init: ModelInit<Tweet>);
+  static copyOf(source: Tweet, mutator: (draft: MutableModel<Tweet>) => MutableModel<Tweet> | void): Tweet;
+}
+
+export declare class User {
+  readonly id: string;
+  readonly id_str?: string;
+  readonly name?: string;
+  readonly screen_name?: string;
+  readonly location?: string;
+  readonly url?: string;
+  readonly description?: string;
+  readonly protected?: boolean;
+  readonly verified?: boolean;
+  readonly followers_count?: number;
+  readonly friends_count?: number;
+  readonly listed_count?: number;
+  readonly favourites_count?: number;
+  readonly statuses_count?: number;
+  readonly created_at?: string;
+  readonly profile_banner_url?: string;
+  readonly profile_image_url_https?: string;
+  readonly default_profile?: boolean;
+  readonly default_profile_image?: boolean;
+  readonly withheld_in_countries?: (string | null)[];
+  readonly withheld_scope?: string;
+  constructor(init: ModelInit<User>);
+  static copyOf(source: User, mutator: (draft: MutableModel<User>) => MutableModel<User> | void): User;
+}

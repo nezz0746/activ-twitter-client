@@ -1,15 +1,13 @@
 export const schema = {
-    "models": {},
-    "enums": {},
-    "nonModels": {
+    "models": {
         "Tweet": {
             "name": "Tweet",
             "fields": {
                 "id": {
                     "name": "id",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": []
                 },
                 "created_at": {
@@ -82,14 +80,25 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "userID": {
+                    "name": "userID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "user": {
                     "name": "user",
                     "isArray": false,
                     "type": {
-                        "nonModel": "User"
+                        "model": "User"
                     },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id"
+                    }
                 },
                 "coordinates": {
                     "name": "coordinates",
@@ -127,24 +136,6 @@ export const schema = {
                     "name": "is_quote_status",
                     "isArray": false,
                     "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "quoted_status": {
-                    "name": "quoted_status",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "Tweet"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "retweeted_status": {
-                    "name": "retweeted_status",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "Tweet"
-                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -219,8 +210,27 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "last": {
+                    "name": "last",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
                 }
-            }
+            },
+            "syncable": true,
+            "pluralName": "Tweets",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "searchable",
+                    "properties": {}
+                }
+            ]
         },
         "User": {
             "name": "User",
@@ -228,8 +238,8 @@ export const schema = {
                 "id": {
                     "name": "id",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": []
                 },
                 "id_str": {
@@ -373,8 +383,19 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 }
-            }
-        },
+            },
+            "syncable": true,
+            "pluralName": "Users",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        }
+    },
+    "enums": {},
+    "nonModels": {
         "Coordinates": {
             "name": "Coordinates",
             "fields": {
@@ -797,5 +818,5 @@ export const schema = {
             }
         }
     },
-    "version": "031e721307524d3c89a9696d58293dc1"
+    "version": "583582f8809f043e763a468bad0875fd"
 };

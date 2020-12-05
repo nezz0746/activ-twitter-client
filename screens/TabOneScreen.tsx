@@ -7,10 +7,11 @@ import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import aws_conf from '../aws-exports.js';
-import { getTweets } from '../graphql/queries';
+import { getTweets, listTweets, searchTweets } from '../src/graphql/queries';
 import { Tweet } from '../models';
 import TweetComponent from '../components/Tweet';
 import Colors from '../constants/Colors';
+import { SearchableSortDirection, SearchableTweetSortableFields, SearchTweetsQueryVariables } from '../src/API';
 
 Amplify.configure(aws_conf);
 
@@ -24,9 +25,15 @@ export default function TabOneScreen() {
 
   const fetchTweets = async () => {
     setLoading(true);
-    const a = await API.graphql(graphqlOperation(getTweets, { username: 'T_Bouhafs' }));
-    console.log(a.data.getTweets);
-    setTweets(a.data.getTweets);
+    const b: SearchTweetsQueryVariables = {
+      sort: {
+        field: SearchableTweetSortableFields.created_at,
+        direction: SearchableSortDirection.asc,
+      },
+    };
+    const a = await API.graphql(graphqlOperation(searchTweets, { variables: b }));
+    console.log(a);
+    setTweets(a.data.searchTweets.items);
     setLoading(false);
   };
 

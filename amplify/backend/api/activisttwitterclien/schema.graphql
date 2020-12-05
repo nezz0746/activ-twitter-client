@@ -2,7 +2,7 @@ type Query {
  getTweets(username: String): [Tweet] @function(name: "getTweetsByUsername-${env}")
 }
  
-type Tweet @model {
+type Tweet @model @searchable {
  id: ID
  created_at: String
  id_str: String
@@ -14,14 +14,13 @@ type Tweet @model {
  in_reply_to_user_id: String
  in_reply_to_user_id_str: String
  in_reply_to_screen_name: String
- user: User
+ userID: ID!
+ user: User @connection(fields: ["userID"])
  coordinates: Coordinates
  place: Place
  quoted_status_id: String
  quoted_status_id_str: String
  is_quote_status: Boolean
- quoted_status: Tweet
- retweeted_status: Tweet
  quote_count: Int
  reply_count: Int
  retweet_count: Int
@@ -32,6 +31,7 @@ type Tweet @model {
  possibly_sensitive: Boolean
  filter_level: String
  lang: String
+ last: Boolean
 }
  
 type Entity {
@@ -60,7 +60,7 @@ type Option {
 }
  
 type UserMention {
- id: Int
+ id: String
  id_str: String
  indices: [Int]
  name: String
@@ -82,18 +82,27 @@ type Hashtag {
 type Media {
  display_url: String
  expanded_url: String
- id: Int
+ id: String
  id_str: [String]
  indices: [Int]
+ source_user_id: String
+ source_user_id_str: String
  media_url: String
  media_url_https: String
- sizes: Size
- source_status_id: Int
- source_status_id_str: Int
+ sizes: Sizes
+ source_status_id: String
+ source_status_id_str: String
  type: String
  url: String
 }
- 
+
+type Sizes {
+ thumb: Size
+ small: Size
+ medium: Size
+ large: Size
+} 
+
 type Size {
  w: Int
  h: Int
@@ -115,7 +124,9 @@ type Place {
  country: String
 }
  
-type User @model {
+type User
+  @model
+{
  id: ID
  id_str: String
  name: String

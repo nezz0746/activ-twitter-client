@@ -7,6 +7,9 @@ export default {
     background: '#fff',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
+    primary: 'rgb(29,161,241)',
+    grey: 'rgb(91,112,131)',
+    mention_color: 'rgb(29,149,224)',
     tabIconSelected: tintColorLight,
   },
   dark: {

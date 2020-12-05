@@ -2,20 +2,26 @@ import React from 'react';
 import {
   Text, View, StyleSheet, Image,
 } from 'react-native';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import { EvilIcons } from '@expo/vector-icons';
 import Tools from '../constants/Tools';
 import { Tweet, User } from '../models';
 import Column from './Column';
+import Colors from '../constants/Colors';
 
-interface TweetComponentProps extends Tweet {
-}
+dayjs.extend(utc);
 
-const TweetComponent = ({ user = {}, text = '', ...rest }: TweetComponentProps) => {
-  const { name, profile_image_url_https }: User = user;
+const TweetComponent = ({
+  user, created_at, text, reply_count, favorite_count, retweet_count, retweeted,
+}: Tweet) => {
+  const { name, profile_image_url_https, screen_name }: User = user;
 
   const imageProfileWidth = 45;
 
   return (
     <View style={styles.root}>
+      {retweeted && <EvilIcons name="retweet" size={24} color={Colors.light.grey} />}
       <Column
         containerSyle={{ paddingHorizontal: 5 }}
       >
@@ -29,23 +35,34 @@ const TweetComponent = ({ user = {}, text = '', ...rest }: TweetComponentProps) 
         />
       </Column>
       <Column
-        bordered
         grow
       >
-        <Text style={styles.username}>{name}</Text>
+        <Text style={styles.username}>
+          {name}
+          <Text style={styles.screen_name}>
+            @
+            {screen_name}
+            {' '}
+            .
+            {' '}
+          </Text>
+          <Text style={styles.screen_name}>{displayTime(created_at)}</Text>
+        </Text>
         <Text>{text}</Text>
         <View style={styles.row}>
           <>
             <View style={styles.segment}>
-              <Text>
-                Commentaires:
-                {rest.reply_count}
-              </Text>
+              <EvilIcons name="retweet" size={24} color={Colors.light.grey} />
+              <Text style={styles.screen_name}>{retweet_count}</Text>
             </View>
             <View style={styles.segment}>
-              <Text>
-                Favories:
-                {rest.favorite_count}
+              <EvilIcons name="comment" size={24} color={Colors.light.grey} />
+              <Text style={styles.screen_name}>{reply_count}</Text>
+            </View>
+            <View style={styles.segment}>
+              <EvilIcons name="heart" size={24} color={Colors.light.grey} />
+              <Text style={styles.screen_name}>
+                {favorite_count}
               </Text>
             </View>
           </>
@@ -53,6 +70,22 @@ const TweetComponent = ({ user = {}, text = '', ...rest }: TweetComponentProps) 
       </Column>
     </View>
   );
+};
+
+const displayTime = (created_at) => {
+  const minutes = dayjs().diff(dayjs(created_at), 'minute');
+  if (minutes < 60) {
+    return `${minutes}m`;
+  }
+  const hours = dayjs().diff(dayjs(created_at), 'hour');
+  if (hours < 24) {
+    return `${hours}h`;
+  }
+  const days = dayjs().diff(dayjs(created_at), 'day');
+  if (days < 7) {
+    return `${days}j`;
+  }
+  return dayjs(created_at).format('DD/MM/YYYY');
 };
 
 const styles = StyleSheet.create({
@@ -69,9 +102,17 @@ const styles = StyleSheet.create({
   },
   segment: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 5,
   },
   username: {
     fontWeight: 'bold',
+  },
+  screen_name: {
+    color: Colors.light.grey,
+    marginHorizontal: 5,
   },
 });
 

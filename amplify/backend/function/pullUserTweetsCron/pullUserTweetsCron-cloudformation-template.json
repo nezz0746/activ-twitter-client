@@ -116,7 +116,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-activisttwitterclien-dev-154037-deployment",
-          "S3Key": "amplify-builds/pullUserTweetsCron-6d585153563172343777-build.zip"
+          "S3Key": "amplify-builds/pullUserTweetsCron-4346752f684269636678-build.zip"
         }
       }
     },
