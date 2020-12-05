@@ -6,22 +6,30 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { EvilIcons } from '@expo/vector-icons';
 import Tools from '../constants/Tools';
-import { Tweet, User } from '../models';
+import { Entity, Tweet, User } from '../models';
 import Column from './Column';
 import Colors from '../constants/Colors';
 
 dayjs.extend(utc);
 
 const TweetComponent = ({
-  user, created_at, text, reply_count, favorite_count, retweet_count, retweeted,
+  user,
+  created_at,
+  text,
+  reply_count,
+  favorite_count,
+  retweet_count,
+  retweeted,
+  entities,
 }: Tweet) => {
+  const { media }: Entity = entities;
   const { name, profile_image_url_https, screen_name }: User = user;
 
   const imageProfileWidth = 45;
 
   return (
     <View style={styles.root}>
-      {retweeted && <EvilIcons name="retweet" size={24} color={Colors.light.grey} />}
+      {/* {retweeted && <EvilIcons name="retweet" size={24} color={Colors.light.grey} />} */}
       <Column
         containerSyle={{ paddingHorizontal: 5 }}
       >
@@ -49,6 +57,15 @@ const TweetComponent = ({
           <Text style={styles.screen_name}>{displayTime(created_at)}</Text>
         </Text>
         <Text>{text}</Text>
+        {media?.length && (
+        <Image
+          style={{
+            height: 250, ...Tools.borderMaker(Colors.light.grey, 1), borderRadius: 3, marginVertical: 5, ...Tools.bowShadow(), backgroundColor: 'white',
+          }}
+          resizeMode="contain"
+          source={{ uri: media[0]?.media_url_https }}
+        />
+        )}
         <View style={styles.row}>
           <>
             <View style={styles.segment}>

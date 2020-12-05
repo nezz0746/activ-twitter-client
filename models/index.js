@@ -4,7 +4,7 @@ import { schema } from './schema';
 
 
 
-const { Tweet, User, Coordinates, Place, Entity, Hashtag, Media, Size, Url, UserMention, Symbol, Poll, Option } = initSchema(schema);
+const { Tweet, User, Coordinates, Place, Entity, Hashtag, Media, Sizes, Size, Url, UserMention, Symbol, Poll, Option } = initSchema(schema);
 
 export {
   Tweet,
@@ -14,6 +14,7 @@ export {
   Entity,
   Hashtag,
   Media,
+  Sizes,
   Size,
   Url,
   UserMention,

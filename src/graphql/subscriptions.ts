@@ -100,6 +100,10 @@ export const onCreateTweet = /* GraphQL */ `
           text
         }
         polls {
+          options {
+            position
+            text
+          }
           end_datetime
           duration_minutes
         }
@@ -213,6 +217,10 @@ export const onUpdateTweet = /* GraphQL */ `
           text
         }
         polls {
+          options {
+            position
+            text
+          }
           end_datetime
           duration_minutes
         }
@@ -326,6 +334,10 @@ export const onDeleteTweet = /* GraphQL */ `
           text
         }
         polls {
+          options {
+            position
+            text
+          }
           end_datetime
           duration_minutes
         }

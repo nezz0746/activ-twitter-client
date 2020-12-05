@@ -38,17 +38,27 @@ export declare class Hashtag {
 export declare class Media {
   readonly display_url?: string;
   readonly expanded_url?: string;
-  readonly id?: number;
+  readonly id?: string;
   readonly id_str?: (string | null)[];
   readonly indices?: (number | null)[];
+  readonly source_user_id?: string;
+  readonly source_user_id_str?: string;
   readonly media_url?: string;
   readonly media_url_https?: string;
-  readonly sizes?: Size;
-  readonly source_status_id?: number;
-  readonly source_status_id_str?: number;
+  readonly sizes?: Sizes;
+  readonly source_status_id?: string;
+  readonly source_status_id_str?: string;
   readonly type?: string;
   readonly url?: string;
   constructor(init: ModelInit<Media>);
+}
+
+export declare class Sizes {
+  readonly thumb?: Size;
+  readonly small?: Size;
+  readonly medium?: Size;
+  readonly large?: Size;
+  constructor(init: ModelInit<Sizes>);
 }
 
 export declare class Size {
@@ -67,7 +77,7 @@ export declare class Url {
 }
 
 export declare class UserMention {
-  readonly id?: number;
+  readonly id?: string;
   readonly id_str?: string;
   readonly indices?: (number | null)[];
   readonly name?: string;

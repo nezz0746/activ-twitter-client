@@ -100,6 +100,10 @@ export const getTweets = /* GraphQL */ `
           text
         }
         polls {
+          options {
+            position
+            text
+          }
           end_datetime
           duration_minutes
         }
@@ -213,6 +217,10 @@ export const getTweet = /* GraphQL */ `
           text
         }
         polls {
+          options {
+            position
+            text
+          }
           end_datetime
           duration_minutes
         }
@@ -293,6 +301,48 @@ export const listTweets = /* GraphQL */ `
         reply_count
         retweet_count
         favorite_count
+        entities {
+          hashtags {
+            indices
+            text
+          }
+          media {
+            display_url
+            expanded_url
+            id
+            id_str
+            indices
+            source_user_id
+            source_user_id_str
+            media_url
+            media_url_https
+            source_status_id
+            source_status_id_str
+            type
+            url
+          }
+          urls {
+            display_url
+            expanded_url
+            indices
+            url
+          }
+          user_mentions {
+            id
+            id_str
+            indices
+            name
+            screen_name
+          }
+          symbols {
+            indices
+            text
+          }
+          polls {
+            end_datetime
+            duration_minutes
+          }
+        }
         favorited
         retweeted
         possibly_sensitive
@@ -444,6 +494,48 @@ export const searchTweets = /* GraphQL */ `
         reply_count
         retweet_count
         favorite_count
+        entities {
+          hashtags {
+            indices
+            text
+          }
+          media {
+            display_url
+            expanded_url
+            id
+            id_str
+            indices
+            source_user_id
+            source_user_id_str
+            media_url
+            media_url_https
+            source_status_id
+            source_status_id_str
+            type
+            url
+          }
+          urls {
+            display_url
+            expanded_url
+            indices
+            url
+          }
+          user_mentions {
+            id
+            id_str
+            indices
+            name
+            screen_name
+          }
+          symbols {
+            indices
+            text
+          }
+          polls {
+            end_datetime
+            duration_minutes
+          }
+        }
         favorited
         retweeted
         possibly_sensitive

@@ -575,7 +575,7 @@ export const schema = {
                 "id": {
                     "name": "id",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -595,6 +595,20 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
+                "source_user_id": {
+                    "name": "source_user_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "source_user_id_str": {
+                    "name": "source_user_id_str",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "media_url": {
                     "name": "media_url",
                     "isArray": false,
@@ -613,7 +627,7 @@ export const schema = {
                     "name": "sizes",
                     "isArray": false,
                     "type": {
-                        "nonModel": "Size"
+                        "nonModel": "Sizes"
                     },
                     "isRequired": false,
                     "attributes": []
@@ -621,14 +635,14 @@ export const schema = {
                 "source_status_id": {
                     "name": "source_status_id",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
                 "source_status_id_str": {
                     "name": "source_status_id_str",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -643,6 +657,47 @@ export const schema = {
                     "name": "url",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        },
+        "Sizes": {
+            "name": "Sizes",
+            "fields": {
+                "thumb": {
+                    "name": "thumb",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "Size"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "small": {
+                    "name": "small",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "Size"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "medium": {
+                    "name": "medium",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "Size"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "large": {
+                    "name": "large",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "Size"
+                    },
                     "isRequired": false,
                     "attributes": []
                 }
@@ -714,7 +769,7 @@ export const schema = {
                 "id": {
                     "name": "id",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -818,5 +873,5 @@ export const schema = {
             }
         }
     },
-    "version": "583582f8809f043e763a468bad0875fd"
+    "version": "245c87491850ea163faadbfe739563e7"
 };
