@@ -104,9 +104,15 @@ exports.handler = async (event) => {
 
     console.log(lastestTweet.data.data.listTweets.items[0]);
 
-    const additionalQueryParam = latestTweetId ? `&since_id=${latestTweetId}` : '';
+    const additionalQueryParam = `&since_id=${latestTweetId || '0'}`;
 
-    const tweets_res = await makeTweeterAxios(`/statuses/user_timeline.json?screen_name=T_Bouhafs${additionalQueryParam}`).get();
+    console.log(additionalQueryParam);
+
+    const url = `/statuses/user_timeline.json?screen_name=T_Bouhafs${additionalQueryParam}`;
+
+    console.log(url);
+
+    const tweets_res = await makeTweeterAxios(url).get();
 
     console.log(tweets_res.data);
     if (tweets_res.data.length) {
