@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import TweetScreen from '../screens/TweetScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -54,6 +55,11 @@ function TabOneNavigator() {
         name="TabOneScreen"
         component={TabOneScreen}
         options={{ headerTitle: 'Mes Tweets' }}
+      />
+      <TabOneStack.Screen
+        name="TweetScreen"
+        component={TweetScreen}
+        options={{ headerTitle: 'Résumé du tweet' }}
       />
     </TabOneStack.Navigator>
   );

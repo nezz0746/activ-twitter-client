@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Text, View, StyleSheet, Image,
+  Text, View, StyleSheet, Image, Pressable,
 } from 'react-native';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { EvilIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import Tools from '../constants/Tools';
 import { Entity, Tweet, User } from '../models';
 import Column from './Column';
@@ -22,13 +23,18 @@ const TweetComponent = ({
   retweeted,
   entities,
 }: Tweet) => {
+  const nav = useNavigation();
   const { media }: Entity = entities;
   const { name, profile_image_url_https, screen_name }: User = user;
 
   const imageProfileWidth = 45;
 
+  const toTweetScreen = () => {
+    nav.navigate('TweetScreen');
+  };
+
   return (
-    <View style={styles.root}>
+    <Pressable onPress={toTweetScreen} style={styles.root}>
       {/* {retweeted && <EvilIcons name="retweet" size={24} color={Colors.light.grey} />} */}
       <Column
         containerSyle={{ paddingHorizontal: 5 }}
@@ -85,7 +91,7 @@ const TweetComponent = ({
           </>
         </View>
       </Column>
-    </View>
+    </Pressable>
   );
 };
 
